@@ -65,6 +65,11 @@
             We have had @Model.VisitorCount visitors this month.
         </p>
         <h2>Products</h2>
+        <h3>Query products by price</h3>
+        <form asp-action="ProductsThatCostMoreThan" method="get">
+            <input name="price" placeholder="Enter a product price" />
+            <input type="submit" />
+        </form>
         <div id="newspaper">
             <ul>
                 @foreach (var item in @Model.Products)
