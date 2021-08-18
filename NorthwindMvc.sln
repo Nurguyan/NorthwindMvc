@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NorthwindMvc", "NorthwindMv
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingWithEFCore", "WorkingWithEFCore\WorkingWithEFCore.csproj", "{350503D4-C163-4BBC-9A27-5F9A7F51B550}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NorthwindService", "PracticalApps\NorthwindService\NorthwindService.csproj", "{17DB10DA-0982-422A-A2FD-AC2521666A20}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{350503D4-C163-4BBC-9A27-5F9A7F51B550}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{350503D4-C163-4BBC-9A27-5F9A7F51B550}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{350503D4-C163-4BBC-9A27-5F9A7F51B550}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17DB10DA-0982-422A-A2FD-AC2521666A20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17DB10DA-0982-422A-A2FD-AC2521666A20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17DB10DA-0982-422A-A2FD-AC2521666A20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17DB10DA-0982-422A-A2FD-AC2521666A20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
