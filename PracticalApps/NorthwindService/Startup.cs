@@ -32,6 +32,7 @@ namespace NorthwindService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddDbContext<Northwind>(options =>
                 options.UseSqlServer("Data Source=(localdb)\\mssqllocaldb;Initial Catalog=Northwind;Integrated Security=True"));
@@ -76,6 +77,14 @@ namespace NorthwindService
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            // must be after UseRouting and before UseEndpoints
+            app.UseCors(configurePolicy: options =>
+            {
+                options.WithMethods("GET", "POST", "PUT", "DELETE");
+                options.WithOrigins(
+                "https://localhost:5002" // for MVC client
+                );
+            });
 
             app.UseAuthorization();
 

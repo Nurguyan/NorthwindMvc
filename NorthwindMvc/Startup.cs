@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Net.Http.Headers;
 
 namespace NorthwindMvc
 {
@@ -28,6 +29,14 @@ namespace NorthwindMvc
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpClient(name: "NorthwindService",
+             configureClient: options =>
+             {
+                 options.BaseAddress = new Uri("https://localhost:5001/");
+                 options.DefaultRequestHeaders.Accept.Add(
+                 new MediaTypeWithQualityHeaderValue(
+                 "application/json", 1.0));
+             });
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<Packt.Shared.Northwind>(options =>
