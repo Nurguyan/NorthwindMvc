@@ -17,6 +17,8 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 using Packt.Shared;
 using static System.Console;
 using NorthwindService.Repositories;
+using Microsoft.AspNetCore.Http; // GetEndpoint() extension method
+using Microsoft.AspNetCore.Routing; // RouteEndpoint
 
 namespace NorthwindService
 {
@@ -87,6 +89,20 @@ namespace NorthwindService
             });
 
             app.UseAuthorization();
+
+            app.Use(next => (context) =>
+            {
+                var endpoint = context.GetEndpoint();
+                if (endpoint != null)
+                {
+                    WriteLine("*** Name: {0}; Route: {1}; Metadata: {2}",
+                    arg0: endpoint.DisplayName,
+                    arg1: (endpoint as RouteEndpoint)?.RoutePattern,
+                    arg2: string.Join(", ", endpoint.Metadata));
+                }
+                // pass context to next middleware in pipeline
+                return next(context);
+            });
 
             app.UseEndpoints(endpoints =>
             {
