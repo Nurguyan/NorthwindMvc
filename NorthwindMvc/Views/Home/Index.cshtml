@@ -74,7 +74,7 @@
             <div class="card-body">
                 <h5 class="card-title">Customers</h5>
                 <p class="card-text">Click the button below to see our customers</p>
-                <a class="btn btn-primary" asp-controller="Home" asp-action="Customers">View</a>
+                <a class="btn btn-primary" asp-controller="Customers" asp-action="Index">View</a>
             </div>
         </div>
     </div>
@@ -82,12 +82,4 @@
 <p class="lead">
     We have had @Model.VisitorCount visitors this month.
 </p>
-<div class="row">
-    <div class="col-md-12">
-        <h4>Query customers from a service</h4>
-        <form asp-action="Customers" method="get">
-            <input name="country" placeholder="Enter a country" />
-            <input type="submit" />
-        </form>
-    </div>
-</div>
+

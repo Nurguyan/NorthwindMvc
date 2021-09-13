@@ -121,6 +121,7 @@ namespace NorthwindService.Controllers
             {
                 return NotFound(); // 404 Resource not found
             }
+            //TODO: fix SQL Server cascade delete limitation issue. See more: https://docs.microsoft.com/en-us/ef/core/saving/cascade-delete
             bool? deleted = await repo.DeleteAsync(id);
             if (deleted.HasValue && deleted.Value) // short circuit AND
             {

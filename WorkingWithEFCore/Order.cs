@@ -27,7 +27,9 @@ namespace Packt.Shared
         public int OrderID { get; set; }
         [Column("CustomerID")]
         [StringLength(5)]
-        public string CustomerId { get; set; }
+#nullable enable
+        public string? CustomerId { get; set; }
+#nullable disable
         [Column("EmployeeID")]
         public int? EmployeeId { get; set; }
         [Column(TypeName = "datetime")]

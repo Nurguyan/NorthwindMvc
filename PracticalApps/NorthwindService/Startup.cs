@@ -36,7 +36,7 @@ namespace NorthwindService
         {
             services.AddCors();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
-            services.AddDbContext<Northwind>(options =>
+            services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer("Data Source=(localdb)\\mssqllocaldb;Initial Catalog=Northwind;Integrated Security=True"));
             services.AddControllers(options =>
             {

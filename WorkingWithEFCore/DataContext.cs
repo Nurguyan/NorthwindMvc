@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Packt.Shared
 {
-    public partial class Northwind : DbContext
+    public partial class DataContext : DbContext
     {
-        public Northwind()
+        public DataContext()
         {
         }
 
-        public Northwind(DbContextOptions<Northwind> options)
+        public DataContext(DbContextOptions<DataContext> options)
             : base(options)
         {
         }
@@ -158,10 +158,12 @@ namespace Packt.Shared
 
                 entity.Property(e => e.Freight).HasDefaultValueSql("((0))");
 
-                entity.HasOne(d => d.Customer)
-                    .WithMany(p => p.Orders)
-                    .HasForeignKey(d => d.CustomerId)
-                    .HasConstraintName("FK_Orders_Customers");
+                entity.HasOne(o => o.Customer)
+                    .WithMany(c => c.Orders)
+                    .HasForeignKey(o => o.CustomerId)
+                    .HasConstraintName("FK_Orders_Customers")
+                    .OnDelete(DeleteBehavior.ClientCascade);
+
 
                 entity.HasOne(d => d.Employee)
                     .WithMany(p => p.Orders)
@@ -184,13 +186,13 @@ namespace Packt.Shared
                 entity.HasOne(d => d.Order)
                     .WithMany(p => p.OrderDetails)
                     .HasForeignKey(d => d.OrderID)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.ClientCascade)
                     .HasConstraintName("FK_Order_Details_Orders");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.OrderDetails)
                     .HasForeignKey(d => d.ProductId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.ClientCascade)
                     .HasConstraintName("FK_Order_Details_Products");
             });
 

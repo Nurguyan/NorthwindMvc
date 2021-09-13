@@ -11,9 +11,9 @@ namespace NorthwindMvc.Controllers
 {
     public class ProductsController : Controller
     {
-        private readonly Northwind _context;
+        private readonly DataContext _context;
 
-        public ProductsController(Northwind context)
+        public ProductsController(DataContext context)
         {
             _context = context;
         }
@@ -57,7 +57,7 @@ namespace NorthwindMvc.Controllers
                     products = products.OrderByDescending(p => p.Category.CategoryName);
                     break;
                 case "supplier_desc":
-                    products = products.OrderByDescending(s => s.Supplier.CompanyName);
+                    products = products.OrderByDescending(p => p.Supplier.CompanyName);
                     break;
                 case "product_desc":
                     products = products.OrderByDescending(p => p.ProductName);
@@ -213,6 +213,5 @@ namespace NorthwindMvc.Controllers
             return _context.Products.Any(e => e.ProductID == id);
         }
 
-        //TO DO: add CategoriesController, CustomersController
     }
 }

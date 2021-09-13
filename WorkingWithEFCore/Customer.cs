@@ -50,7 +50,7 @@ namespace Packt.Shared
         [InverseProperty(nameof(CustomerCustomerDemo.Customer))]
         [XmlIgnore]
         public virtual ICollection<CustomerCustomerDemo> CustomerCustomerDemos { get; set; }
-        [InverseProperty(nameof(Order.Customer))]
+        [InverseProperty("Customer")]
         [XmlIgnore]
         public virtual ICollection<Order> Orders { get; set; }
     }

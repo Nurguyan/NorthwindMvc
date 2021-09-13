@@ -17,14 +17,13 @@ namespace NorthwindMvc.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private Northwind _context;
-        private readonly IHttpClientFactory clientFactory;
+        private readonly DataContext _context;
+        
 
-        public HomeController(ILogger<HomeController> logger, Northwind context, IHttpClientFactory httpClientFactory)
+        public HomeController(ILogger<HomeController> logger, DataContext context)
         {
             _logger = logger;
             _context = context;
-            clientFactory = httpClientFactory;
         }
 
         public async Task<IActionResult> Index()
@@ -32,8 +31,7 @@ namespace NorthwindMvc.Controllers
             var model = new HomeIndexViewModel
             {
                 VisitorCount = (new Random()).Next(1, 1001),
-                Categories = await _context.Categories.ToListAsync(),
-                Products = await _context.Products.ToListAsync()
+                Categories = await _context.Categories.ToListAsync()
             };
             return View(model);
         }
@@ -104,30 +102,6 @@ namespace NorthwindMvc.Controllers
                 return View(model);
             }
         }
-
-        public async Task<IActionResult> Customers(string country)
-        {
-            string uri;
-            if (string.IsNullOrEmpty(country))
-            {
-                ViewData["Title"] = "All Customers Worldwide";
-                uri = "api/customers/";
-            }
-            else
-            {
-                ViewData["Title"] = $"Customers in {country}";
-                uri = $"api/customers/?country={country}";
-            }
-            
-            var client = clientFactory.CreateClient(name: "NorthwindService");
-
-            var request = new HttpRequestMessage(method: HttpMethod.Get, requestUri: uri);
-
-            HttpResponseMessage response = await client.SendAsync(request);
-
-            var model = await response.Content.ReadFromJsonAsync<IEnumerable<Customer>>();
-
-            return View(model);
-        }
+   
     }
 }

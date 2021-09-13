@@ -39,7 +39,7 @@ namespace NorthwindMvc
              });
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDbContext<Packt.Shared.Northwind>(options =>
+            services.AddDbContext<Packt.Shared.DataContext>(options =>
                 options.UseSqlServer("Data Source=(localdb)\\mssqllocaldb;Initial Catalog=Northwind;Integrated Security=True"));
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddDefaultIdentity<IdentityUser>(options =>

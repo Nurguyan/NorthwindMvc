@@ -14,8 +14,8 @@ namespace NorthwindService.Repositories
         private static ConcurrentDictionary<string, Customer> customersCache;
         // use an instance data context field because it should not be
         // cached due to their internal caching
-        private readonly Northwind db;
-        public CustomerRepository(Northwind db)
+        private readonly DataContext db;
+        public CustomerRepository(DataContext db)
         {
             this.db = db;
             // pre-load customers from database as a normal

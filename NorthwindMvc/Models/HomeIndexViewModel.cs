@@ -10,6 +10,5 @@ namespace NorthwindMvc.Models
     {
         public int VisitorCount;
         public IList<Category> Categories { get; set; }
-        public IList<Product> Products { get; set; }
     }
 }

@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Packt.Shared.Customer>
+
+@{
+    ViewData["Title"] = "Customers";
+}
+
+<h1>Customers</h1>
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
+</p>
+
+<div class="row">
+    <form asp-action="Index" method="get">
+        <div class="form-actions no-color">
+            <p>
+                Find by name: <input class="form-text" type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                <input type="submit" value="Search" class="btn btn-default" /> |
+                <a asp-action="Index">Back to Full List</a>
+            </p>
+        </div>
+    </form>
+    <div class="col-md-12">
+        <h4>Query customers from a service</h4>
+        <form asp-action="Index" method="get">     
+            <div class="form-actions no-color">
+                <p>
+                    <input name="country" placeholder="Enter a country" />
+                    <input type="submit" />
+                    <a asp-action="Index">Back to Full List</a>
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["CompanySortParm"]">Company Name</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["ContactSortParm"]">Contact Name</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["AddressSortParm"]">Address</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["PhoneSortParm"]">Phone</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CustomerID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.CustomerID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CustomerID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
